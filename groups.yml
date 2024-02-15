@@ -5,7 +5,6 @@
   pre_tasks:
 
   - name: install updates (Ubuntu)
-    tags: always
     apt:
       #upgrade: dist
       update_cache: yes
@@ -16,7 +15,6 @@
   tasks:
 
   - name: install nginx package
-    tags: nginx,ubuntu
     apt:
       name: 
         - nginx
@@ -28,7 +26,6 @@
   tasks:
 
     - name: install mariadb package (Ubuntu)
-      tags: db,mariadb,ubuntu
       apt:
         name: mariadb-server
         state: latest
