@@ -1,1 +1,5 @@
+[web_servers]
 192.168.56.3 nginx_package=nginx apache2_package=apache2
+
+[db_servers]
+192.168.56.4
