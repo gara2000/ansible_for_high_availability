@@ -4,14 +4,10 @@
   become: true
   tasks:
 
-  - name: install nginx package
-    apt:
-      name: nginx 
+  - name: install apache2 and nginx packages
+    package:
+      name: 
+        - "{{ nginx_package }}"
+        - "{{ apache2_package }}"
       state: latest
     when: ansible_distribution in ["Debian", "Ubuntu"]
-
-  - name: install apache2 package
-    apt:
-      name: apache2
-      state: latest
-    when: ansible_distribution == "Ubuntu"
