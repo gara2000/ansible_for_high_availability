@@ -15,13 +15,22 @@
   become: true
   tasks:
 
-  - name: install nginx package
-    tags: nginx,ubuntu
+  - name: install apache package
+    tags: apache,ubuntu
     apt:
       name: 
-        - nginx
+        - apache2
       state: latest
     when: ansible_distribution in ["Ubuntu"]
+
+  - name: copy default html file for site
+    tags: apache,ubuntu
+    copy:
+      src: default_site.html
+      dest: /var/www/html/index.html
+      owner: root
+      group: root
+      mode: 0644
 
 - hosts: db_servers
   become: true
