@@ -1,0 +1,17 @@
+---
+
+- hosts: all
+  become: true
+  tasks:
+
+  - name: install nginx package
+    apt:
+      name: nginx 
+      state: latest
+    when: ansible_distribution in ["Debian", "Ubuntu"]
+
+  - name: install apache2 package
+    apt:
+      name: apache2
+      state: latest
+    when: ansible_distribution == "Ubuntu"
