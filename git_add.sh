@@ -8,8 +8,8 @@ git add .
 echo -n "Give a commit message [default: new commit]:"
 read msg
 
-if [ -z msg ]; then
-	git commit "new commit"
+if [ -z $msg ]; then
+	git commit -m "new commit"
 else
 	git commit -m "$msg"
 fi
