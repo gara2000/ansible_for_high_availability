@@ -7,15 +7,9 @@
   - name: install updates (Ubuntu)
     tags: always
     apt:
+      #upgrade: dist
       update_cache: yes
-    changed_when: false
     when: ansible_distribution == "Ubuntu"
-
-  - name: add ssh key for cassa
-    tags: always
-    authorized_key:
-      user: cassa
-      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP+jk8LpXXoRHCZq59YZjcJmxV1RvwN3uChUCoUS95Wf ubuntu@ubuntuserver2204"
 
 - hosts: web_servers
   become: true
