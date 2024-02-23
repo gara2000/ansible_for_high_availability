@@ -11,40 +11,17 @@
     changed_when: false
     when: ansible_distribution == "Ubuntu"
 
-  - name: add ssh key for cassa
-    tags: always
-    authorized_key:
-      user: cassa
-      key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP+jk8LpXXoRHCZq59YZjcJmxV1RvwN3uChUCoUS95Wf ubuntu@ubuntuserver2204"
+- hosts: all
+  become: true
+  roles:
+    - base
 
 - hosts: web_servers
   become: true
-  tasks:
-
-  - name: install apache package
-    tags: apache,ubuntu
-    apt:
-      name: 
-        - apache2
-      state: latest
-    when: ansible_distribution in ["Ubuntu"]
-
-  - name: copy default html file for site
-    tags: apache,ubuntu
-    copy:
-      src: default_site.html
-      dest: /var/www/html/index.html
-      owner: root
-      group: root
-      mode: 0644
+  roles:
+    - web_servers
 
 - hosts: db_servers
   become: true
-  tasks:
-
-    - name: install mariadb package (Ubuntu)
-      tags: db,mariadb,ubuntu
-      apt:
-        name: mariadb-server
-        state: latest
-      when: ansible_distribution == "Ubuntu" 
+  roles:
+    - db_servers

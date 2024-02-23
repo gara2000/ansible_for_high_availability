@@ -1,0 +1,4 @@
+- name: add ssh key for cassa
+  authorized_key:
+    user: cassa
+    key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP+jk8LpXXoRHCZq59YZjcJmxV1RvwN3uChUCoUS95Wf ubuntu@ubuntuserver2204"
